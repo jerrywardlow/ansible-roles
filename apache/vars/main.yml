@@ -1,0 +1,5 @@
+apache_mods:
+  # Modules to be enabled in Apache
+  - rewrite
+  - wsgi
+  - php7.0
