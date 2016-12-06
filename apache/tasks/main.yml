@@ -15,3 +15,15 @@
   with_items: "{{ apache_mods }}"
   notify:
     - restart apache2
+
+- name: Create virtual host config
+  template:
+    src: vhost.conf.j2
+    dest: /etc/apache2/sites-available/mysite.conf
+
+- name: Enable virtual host
+  command: a2ensite mysite
+  args:
+    creates: /etc/apache2/sites-enabled/mysite.conf
+  notify:
+    - restart apache2
