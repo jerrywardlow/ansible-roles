@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+<VirtualHost *:80>
+    ServerName {{ vhost.servername }}
+    ServerAlias {{ vhost.serveralias }}
+    ServerAdmin {{ vhost.serveradmin }}
+    DocumentRoot {{ vhost.documentroot }}
+
+    <Directory {{ vhost.documentroot }}>
+        AllowOverride all
+        Require all granted
+        {# Modify as needed #}
+    </Directory>
+
+</VirtualHost>

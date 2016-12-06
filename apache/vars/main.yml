@@ -3,3 +3,9 @@ apache_mods:
   - rewrite
   - wsgi
   - php7.0
+
+vhost:
+  servername: "webserver.example.com"
+  serveralias: "webserver"
+  serveradmin: "admin@example.com"
+  documentroot: "/var/www/html"
