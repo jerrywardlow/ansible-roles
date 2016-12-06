@@ -16,6 +16,11 @@
   notify:
     - restart apache2
 
+- name: Disable default site
+  command: a2dissite 000-default
+  args:
+    removes: /etc/apache2/sites-enabled/000-default.conf
+
 - name: Create virtual host config
   template:
     src: vhost.conf.j2
