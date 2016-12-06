@@ -1,0 +1,14 @@
+---
+
+mysql_root_pw: superSECRET123#@!
+
+mysql_db:
+  - name: test
+    state: present
+  - name: old
+    state: absent
+
+mysql_user:
+  - name: dwnkl
+    pass: crapplesauce
+    priv: "test.*:ALL"
