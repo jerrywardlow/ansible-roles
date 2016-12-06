@@ -1,0 +1,29 @@
+---
+
+- name: Include OS variable variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Set MySQL root password
+  debconf:
+    name: mysql-server
+    question: mysql-server/root_password
+    value: "{{ mysql_root_pw }}"
+    vtype: password
+  changed_when: false
+  when: ansible_os_family == "Debian"
+
+- name: Confirm password
+  debconf:
+    name: mysql-server
+    question: mysql-server/root_password_again
+    value: "{{ mysql_root_pw }}"
+    vtype: password
+  changed_when: false
+  when: ansible_os_family == "Debian"
+
+
+- name: Install MySQL
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ mysql_packages }}"
