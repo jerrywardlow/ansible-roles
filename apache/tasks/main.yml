@@ -1,0 +1,17 @@
+---
+
+- name: Install Apache
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - apache2
+    - apache2-utils
+
+- name: Enable modules
+  apache2_module:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ apache_mods }}"
+  notify:
+    - restart apache2
