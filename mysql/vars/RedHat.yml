@@ -1,7 +1,8 @@
 ---
 
 mysql_pacakages:
-  - mysql-server
-  - mysql-python
+  - mariadb
+  - mariadb-server
+  - MySQL-python
 
 mysql_service: mysqld
