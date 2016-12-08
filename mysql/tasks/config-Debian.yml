@@ -1,0 +1,25 @@
+---
+
+- name: Set MySQL root password
+  debconf:
+    name: mysql-server
+    question: mysql-server/root_password
+    value: "{{ mysql_root_pw }}"
+    vtype: password
+  changed_when: false
+
+- name: Confirm password
+  debconf:
+    name: mysql-server
+    question: mysql-server/root_password_again
+    value: "{{ mysql_root_pw }}"
+    vtype: password
+  changed_when: false
+
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
+  with_items: "{{ mysql_packages }}"
